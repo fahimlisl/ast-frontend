@@ -130,7 +130,7 @@
 
 
 
-import { Facebook } from "lucide-react";
+import { Facebook, Youtube } from "lucide-react";
 import { Link } from "react-router-dom";
 
 const Footer = () => {
@@ -202,13 +202,21 @@ const Footer = () => {
                   transition"
                 >
                   <Facebook size={18} />
-                  <span className="text-sm">Facebook</span>
+                  {/* <span className="text-sm">Facebook</span> */}
                 </a>
+                              <a 
+                href="https://youtube.com/@abdussakurtaimy?si=xhraClloYvz3fxHF"
+                className="px-4 py-2 rounded-full  border border-white/10  transition"
+                rel="noopener noreferrer"
+                aria-label="Visit our Facebook page"
+              >
+                <Youtube className="text-red-500" size={18} />
+              </a>
 
-                <span className="flex items-center gap-2 px-3 py-2 rounded-lg
+                {/* <span className="flex items-center gap-2 px-3 py-2 rounded-lg
                   border border-white/10 text-gray-500 cursor-not-allowed">
                   <span className="text-sm">YouTube (soon)</span>
-                </span>
+                </span> */}
               </div>
             </div>
           </div>
