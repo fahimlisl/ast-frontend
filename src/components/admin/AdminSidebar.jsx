@@ -78,6 +78,18 @@ const AdminSidebar = () => {
         >
           Tafser
         </NavLink>
+        <NavLink
+          to="/admin/download"
+          className={({ isActive }) =>
+            `block px-4 py-2 rounded transition ${
+              isActive
+                ? "bg-emerald-500/20 text-emerald-400"
+                : "hover:bg-white/5"
+            }`
+          }
+        >
+          Books
+        </NavLink>
       </nav>
 
       <div className="p-4 border-t border-white/10">

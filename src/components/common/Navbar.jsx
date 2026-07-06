@@ -158,7 +158,7 @@ const Navbar = () => {
     { name: "Articles", path: "/articles", icon: BookOpen },
     { name: "Khutba", path: "/khutba", icon: ScrollText },
     { name: "Contact", path: "/contact", icon: FileText },
-    { name: "Downloads", path: "/downloads", icon: Download },
+    { name: "Books", path: "/downloads", icon: Download },
     { name: "Guides", path: "/guides", icon: Signpost },
   ];
 

@@ -23,6 +23,8 @@ import AdminTafser from "../pages/admin/AdminTafser.jsx";
 import Download from "../pages/Download.jsx";
 import Contact from "../pages/Contact.jsx";
 import Guides from "../pages/Guides.jsx";
+import AdminDownload from "../pages/admin/AdminDownload.jsx";
+import AdminDownloadForm from "../pages/admin/AdminDownloadForm.jsx";
 
 const AppRoutes = () => {
   return (
@@ -57,6 +59,8 @@ const AppRoutes = () => {
 
         <Route path="/admin/tafser" element={<AdminTafser />} />
 
+        <Route path="/admin/download" element={<AdminDownload />} />
+        <Route path="/admin/download/new" element={<AdminDownloadForm />} />
       </Route>
     </Routes>
   );

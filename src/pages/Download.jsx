@@ -1,17 +1,52 @@
+import { useEffect, useState } from "react";
+import { getDownloadList, increaseDownloadView } from "../api/downloads.api";
 import SEOHead from "../components/SEOHead";
 import { seoConfig } from "../utils/seoConfig";
 
 const Download = () => {
-  const config = seoConfig.downloads;
+  const [downloads, setDownloads] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  const config = seoConfig.downloads; 
 
   const schemaMarkup = {
     "@context": "https://schema.org",
     "@type": "CollectionPage",
-    "name": "Islamic Resources & Downloads",
+    "name": "Islamic Books & Resources by Abdus Sakur Taimy",
     "description": config.description,
     "author": {
       "@type": "Person",
       "name": "Tajammul Hoque"
+    }
+  };
+
+  const fetchDownloads = async () => {
+    try {
+      const res = await getDownloadList();
+      setDownloads(res.data.data || []);
+    } catch {
+      console.error("Failed to fetch downloads");
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    fetchDownloads();
+  }, []);
+
+  const handleView = async (id, url) => {
+    try {
+      await increaseDownloadView(id);
+      window.open(url, "_blank");
+
+      setDownloads((prev) =>
+        prev.map((d) =>
+          d._id === id ? { ...d, viewC: d.viewC + 1 } : d
+        )
+      );
+    } catch {
+      alert("Failed to register view");
     }
   };
 
@@ -26,206 +61,89 @@ const Download = () => {
         schemaMarkup={schemaMarkup}
       />
 
-      <div className="max-w-7xl mx-auto px-6 py-24">
-        <div className="text-center mb-20">
+      <div className="max-w-5xl mx-auto px-6 py-24">
+        <div className="mb-16 text-center">
           <h1 className="text-4xl md:text-5xl font-bold mb-4">
-            Islamic Resources & Downloads
+            Islamic Books & Resources
           </h1>
           <p className="text-gray-400 max-w-2xl mx-auto">
-            A growing library of authentic Islamic books, study materials,
-            khutbah PDFs, and scholarly resources — carefully curated with sincere intention.
+            Downloadable Islamic books and resources shared by Abdus Sakur Taimy
+            to support learning, reflection, and personal growth.
           </p>
         </div>
 
-        <div 
-          className="max-w-3xl mx-auto border border-white/10 rounded-3xl p-10
-          bg-gradient-to-br from-white/5 to-transparent backdrop-blur-sm
-          text-center"
-          itemScope
-          itemType="https://schema.org/CollectionPage"
-        >
-          <div className="inline-flex items-center justify-center w-16 h-16
-            rounded-full bg-emerald-500/20 text-emerald-400 mb-6 text-2xl"
-          >
-            📚
+        {loading && (
+          <div className="text-center text-gray-400 py-20">
+            Loading downloads…
           </div>
+        )}
 
-          <h2 className="text-2xl font-semibold mb-3" itemProp="name">
-            Authentic Islamic Resources
-          </h2>
-
-          <p className="text-gray-400 mb-8 leading-relaxed" itemProp="description">
-            We are carefully preparing a comprehensive collection of beneficial Islamic
-            resources including books (PDF), tafsir study notes, khutbah collections,
-            and scholarly reference materials. All downloads will be authentic, well-organized,
-            and freely accessible to everyone seeking to deepen their Islamic knowledge.
-          </p>
-
-          <div className="flex flex-wrap justify-center gap-3 text-sm">
-            <span className="px-4 py-2 rounded-full bg-white/5 border border-white/10">
-              📖 Islamic Books & Ebooks
-            </span>
-            <span className="px-4 py-2 rounded-full bg-white/5 border border-white/10">
-              🕌 Khutbah Collections
-            </span>
-            <span className="px-4 py-2 rounded-full bg-white/5 border border-white/10">
-              📝 Tafsir Study Notes
-            </span>
-            <span className="px-4 py-2 rounded-full bg-white/5 border border-white/10">
-              📂 Reference Materials
-            </span>
+        {!loading && downloads.length === 0 && (
+          <div className="text-center text-gray-400 py-20">
+            No downloads have been added yet. Check back soon!
           </div>
-        </div>
+        )}
 
-        <div className="my-20 border-t border-white/10" />
-
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          <div 
-            className="border border-white/10 rounded-2xl p-6 hover:border-emerald-400/40 transition"
-            itemScope
-            itemType="https://schema.org/Thing"
-          >
-            <h3 className="text-lg font-semibold mb-2 text-emerald-400" itemProp="name">
-              📖 Islamic Books
-            </h3>
-            <p className="text-sm text-gray-400" itemProp="description">
-              Downloadable PDF books covering Aqeedah (Islamic Beliefs), Fiqh (Islamic Law),
-              Qur'anic Tafsir, Islamic History (Seerah), and Islamic Character Development.
-            </p>
-            <p className="mt-4 text-xs italic text-gray-500">
-              Status: In preparation
-            </p>
-          </div>
-
-          <div 
-            className="border border-white/10 rounded-2xl p-6 hover:border-emerald-400/40 transition"
-            itemScope
-            itemType="https://schema.org/Thing"
-          >
-            <h3 className="text-lg font-semibold mb-2 text-emerald-400" itemProp="name">
-              🕌 Khutbah Collection
-            </h3>
-            <p className="text-sm text-gray-400" itemProp="description">
-              Friday khutbah PDFs and selected sermons organized for easy access,
-              personal study, and community sharing.
-            </p>
-            <p className="mt-4 text-xs italic text-gray-500">
-              Status: Coming soon
-            </p>
-          </div>
-
-          <div 
-            className="border border-white/10 rounded-2xl p-6 hover:border-emerald-400/40 transition"
-            itemScope
-            itemType="https://schema.org/Thing"
-          >
-            <h3 className="text-lg font-semibold mb-2 text-emerald-400" itemProp="name">
-              📝 Study Resources
-            </h3>
-            <p className="text-sm text-gray-400" itemProp="description">
-              Comprehensive study notes, summaries, and reference materials designed
-              to support deeper Islamic learning and understanding.
-            </p>
-            <p className="mt-4 text-xs italic text-gray-500">
-              Status: Planned
-            </p>
-          </div>
-        </div>
-
-        {/* FAQ Section for SEO */}
-        <section className="mt-24 pt-20 border-t border-white/10">
-          <h2 className="text-2xl font-bold mb-12 text-center">
-            About Our Downloads
-          </h2>
-
-          <div itemScope itemType="https://schema.org/FAQPage" className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            <div
-              className="border border-white/10 rounded-2xl p-6"
-              itemProp="mainEntity"
-              itemScope
-              itemType="https://schema.org/Question"
-            >
-              <h3 
-                className="font-semibold mb-3 text-emerald-400"
-                itemProp="name"
+        {!loading && downloads.length > 0 && (
+          <ul className="space-y-5">
+            {downloads.map((d, index) => (
+              <li
+                key={d._id}
+                className="group flex items-center justify-between 
+                border border-white/10 rounded-2xl 
+                px-6 py-5 hover:border-amber-400/40 
+                transition"
+                itemScope
+                itemType="https://schema.org/Book"
               >
-                Will all downloads be free?
-              </h3>
-              <div itemProp="acceptedAnswer" itemScope itemType="https://schema.org/Answer">
-                <p className="text-gray-400 text-sm" itemProp="text">
-                  Yes! All downloads including Islamic books, study materials, and resources will be completely 
-                  free. We believe authentic Islamic knowledge should be accessible to everyone without financial barriers.
-                </p>
-              </div>
-            </div>
+                <div className="flex items-center gap-6 flex-grow">
+                  <span
+                    className="text-sm text-gray-500 font-mono flex-shrink-0"
+                    itemProp="position"
+                  >
+                    {String(index + 1).padStart(2, "0")}
+                  </span>
 
-            <div
-              className="border border-white/10 rounded-2xl p-6"
-              itemProp="mainEntity"
-              itemScope
-              itemType="https://schema.org/Question"
-            >
-              <h3 
-                className="font-semibold mb-3 text-emerald-400"
-                itemProp="name"
-              >
-                What qualifies the materials as authentic?
-              </h3>
-              <div itemProp="acceptedAnswer" itemScope itemType="https://schema.org/Answer">
-                <p className="text-gray-400 text-sm" itemProp="text">
-                  All materials are carefully selected and reviewed to ensure they are rooted in the Qur'an, 
-                  authentic Sunnah (teachings of Prophet Muhammad), and scholarly Islamic sources. We prioritize 
-                  accuracy and authenticity above all else.
-                </p>
-              </div>
-            </div>
+                  <div className="flex-grow">
+                    <h2
+                      className="text-base md:text-lg font-medium 
+                      group-hover:text-amber-400 transition"
+                      itemProp="name"
+                    >
+                      {d.title}
+                    </h2>
 
-            <div
-              className="border border-white/10 rounded-2xl p-6"
-              itemProp="mainEntity"
-              itemScope
-              itemType="https://schema.org/Question"
-            >
-              <h3 
-                className="font-semibold mb-3 text-emerald-400"
-                itemProp="name"
-              >
-                Can I share these resources with others?
-              </h3>
-              <div itemProp="acceptedAnswer" itemScope itemType="https://schema.org/Answer">
-                <p className="text-gray-400 text-sm" itemProp="text">
-                  Absolutely! We encourage sharing these materials for the sake of spreading Islamic knowledge. 
-                  Please provide proper attribution when sharing with communities, study circles, or online platforms.
-                </p>
-              </div>
-            </div>
+                    <div className="flex items-center gap-4 text-xs text-gray-400 mt-2">
+                      <span itemProp="datePublished">
+                        {d.createdAt ? new Date(d.createdAt).toLocaleDateString('en-US', {
+                          year: 'numeric',
+                          month: 'short',
+                          day: 'numeric'
+                        }) : 'Date not available'}
+                      </span>
+                      <span className="flex items-center gap-1">
+                        {d.viewC || 0} views
+                      </span>
+                    </div>
+                  </div>
+                </div>
 
-            <div
-              className="border border-white/10 rounded-2xl p-6"
-              itemProp="mainEntity"
-              itemScope
-              itemType="https://schema.org/Question"
-            >
-              <h3 
-                className="font-semibold mb-3 text-emerald-400"
-                itemProp="name"
-              >
-                When will downloads be available?
-              </h3>
-              <div itemProp="acceptedAnswer" itemScope itemType="https://schema.org/Answer">
-                <p className="text-gray-400 text-sm" itemProp="text">
-                  We are actively preparing the resource collection and will launch downloads soon. Follow our 
-                  WhatsApp channel or email updates for announcements about when resources become available.
-                </p>
-              </div>
-            </div>
-          </div>
-        </section>
+                <button
+                  onClick={() => handleView(d._id, d.url)}
+                  className="px-5 py-2 rounded-full text-sm font-medium
+                  border border-white/20 hover:bg-white/5 
+                  hover:border-amber-400/40 transition flex-shrink-0"
+                  aria-label={`Download ${d.title}`}
+                >
+                  Download
+                </button>
 
-        <div className="mt-24 text-center text-sm text-gray-500 italic max-w-2xl mx-auto">
-          "Allah will raise those who have believed among you and those who were
-          given knowledge, by degrees." — Qur'an 58:11
-        </div>
+                <meta itemProp="author" content="Tajammul Hoque" />
+                <meta itemProp="description" content={d.title} />
+              </li>
+            ))}
+          </ul>
+        )}
       </div>
     </>
   );
