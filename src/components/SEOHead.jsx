@@ -42,7 +42,7 @@ const SEOHead = ({
     
     setMeta('robots', 'index, follow');
     setMeta('language', 'English');
-    setMeta('author', 'Tajammul Hoque');
+    setMeta('author', 'Abdus Sakur Taimy');
     
     let canonicalLink = document.querySelector('link[rel="canonical"]');
     if (!canonicalLink) {

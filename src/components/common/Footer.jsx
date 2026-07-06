@@ -101,7 +101,7 @@
 //         <div className="mt-8 flex flex-col md:flex-row items-center justify-between gap-4 text-xs text-gray-500">
 
 //           <span>
-//             © {new Date().getFullYear()} Tajammul Hoque Salafi. All rights reserved.
+//             © {new Date().getFullYear()} Abdus Sakur Taimy. All rights reserved.
 //           </span>
 
 //           <span className="flex items-center gap-1">
@@ -233,7 +233,7 @@ const Footer = () => {
         <div className="mt-8 flex flex-col md:flex-row items-center justify-between gap-4 text-xs text-gray-500">
 
           <span>
-            © {new Date().getFullYear()} Tajammul Hoque Salafi. All rights reserved.
+            © {new Date().getFullYear()} Abdus Sakur Taimy. All rights reserved.
           </span>
 
           <span className="flex items-center gap-1">

@@ -13,11 +13,11 @@ const Articles = () => {
   const schemaMarkup = {
     "@context": "https://schema.org",
     "@type": "CollectionPage",
-    "name": "Islamic Articles by Tajammul Hoque",
+    "name": "Islamic Articles by Abdus Sakur Taimy",
     "description": config.description,
     "author": {
       "@type": "Person",
-      "name": "Tajammul Hoque"
+      "name": "Abdus Sakur Taimy"
     }
   };
 
@@ -124,7 +124,7 @@ const Articles = () => {
                   )}
                 </Link>
 
-                <meta itemProp="author" content="Tajammul Hoque" />
+                <meta itemProp="author" content="Abdus Sakur Taimy" />
                 <meta itemProp="articleSection" content="Islamic Knowledge" />
               </li>
             ))}

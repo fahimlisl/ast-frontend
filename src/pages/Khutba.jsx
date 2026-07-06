@@ -12,11 +12,11 @@ const Khutba = () => {
   const schemaMarkup = {
     "@context": "https://schema.org",
     "@type": "CollectionPage",
-    "name": "Islamic Khutbas by Tajammul Hoque",
+    "name": "Islamic Khutbas by Abdus Sakur Taimy",
     "description": config.description,
     "author": {
       "@type": "Person",
-      "name": "Tajammul Hoque"
+      "name": "Abdus Sakur Taimy"
     }
   };
 
@@ -138,7 +138,7 @@ const Khutba = () => {
                   View
                 </button>
 
-                <meta itemProp="author" content="Tajammul Hoque" />
+                <meta itemProp="author" content="Abdus Sakur Taimy" />
                 <meta itemProp="description" content={k.title} />
               </li>
             ))}
@@ -208,7 +208,7 @@ const Khutba = () => {
               </h3>
               <div itemProp="acceptedAnswer" itemScope itemType="https://schema.org/Answer">
                 <p className="text-gray-400 text-sm" itemProp="text">
-                  All khutbas are delivered by Tajammul Hoque, an Islamic scholar dedicated to authentic Islamic
+                  All khutbas are delivered by Abdus Sakur Taimy, an Islamic scholar dedicated to authentic Islamic
                   teaching rooted in the Qur'an and Sunnah. His approach is clear, practical, and beneficial.
                 </p>
               </div>

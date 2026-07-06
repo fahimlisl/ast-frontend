@@ -16,7 +16,7 @@ const Download = () => {
     "description": config.description,
     "author": {
       "@type": "Person",
-      "name": "Tajammul Hoque"
+      "name": "Abdus Sakur Taimy"
     }
   };
 
@@ -138,7 +138,7 @@ const Download = () => {
                   Download
                 </button>
 
-                <meta itemProp="author" content="Tajammul Hoque" />
+                <meta itemProp="author" content="Abdus Sakur Taimy" />
                 <meta itemProp="description" content={d.title} />
               </li>
             ))}
