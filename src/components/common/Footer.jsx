@@ -206,9 +206,15 @@ const Footer = () => {
                 </a>
                               <a 
                 href="https://youtube.com/@abdussakurtaimy?si=xhraClloYvz3fxHF"
-                className="px-4 py-2 rounded-full  border border-white/10  transition"
-                rel="noopener noreferrer"
-                aria-label="Visit our Facebook page"
+                // className="px-4 py-2 rounded-full  border border-white/10  transition"
+                // rel="noopener noreferrer"
+                // aria-label="Visit our Facebook page"
+                                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-2 px-3 py-2 rounded-lg
+                  border border-white/10 text-gray-400
+                  hover:text-amber-400 hover:border-amber-400/40
+                  transition"
               >
                 <Youtube className="text-red-500" size={18} />
               </a>
