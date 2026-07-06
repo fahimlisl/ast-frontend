@@ -130,7 +130,7 @@ const Tafser = () => {
       <div className="max-w-7xl mx-auto px-6 py-20">
         <div className="mb-16 text-center">
           <h1 className="text-4xl md:text-5xl font-bold mb-4">
-            Tafsir al-Qur'an by Abdus Sakur Taimy
+             fsir al-Qur'an by Abdus Sakur Taimy
           </h1>
           <p className="text-gray-400 max-w-2xl mx-auto">
             Ayah-by-ayah explanation and scholarly commentary rooted in the Qur'an and authentic Islamic sources.

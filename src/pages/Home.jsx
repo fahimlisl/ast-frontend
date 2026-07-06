@@ -257,7 +257,7 @@
 
 import { Link } from "react-router-dom";
 import SEOHead from "../components/SEOHead";
-import { seoConfig } from "../utils/seoConfig";
+import { seoConfig } from "../utils/seoConfig.js";
 
 const Home = () => {
   const config = seoConfig.home;
@@ -276,8 +276,8 @@ const Home = () => {
       "email": "contact@abdusskaurtaimyofficial.com"
     },
     "sameAs": [
-      "https://facebook.com/tajammul",
-      "https://youtube.com/@tajammul"
+      "https://facebook.com/abdussakurtaimy",
+      "https://youtube.com/@abdussakurtaimy"
     ]
   };
 
