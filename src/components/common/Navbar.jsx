@@ -154,12 +154,12 @@ const Navbar = () => {
   const [authOpen, setAuthOpen] = useState(false);
 
   const navLinks = [
-    { name: "Tafser", path: "/tafser", icon: FileText },
-    { name: "Articles", path: "/articles", icon: BookOpen },
-    { name: "Khutba", path: "/khutba", icon: ScrollText },
-    { name: "Contact", path: "/contact", icon: FileText },
-    { name: "Books", path: "/downloads", icon: Download },
-    { name: "Guides", path: "/guides", icon: Signpost },
+    { name: "তাফসীর", path: "/tafser", icon: FileText },
+    { name: "প্রবন্ধ", path: "/articles", icon: BookOpen },
+    { name: "ইসলামী খুতবাহ", path: "/khutba", icon: ScrollText },
+    { name: "যোগাযোগ", path: "/contact", icon: FileText },
+    { name: "বই", path: "/downloads", icon: Download },
+    { name: "নির্দেশিকা", path: "/guides", icon: Signpost },
   ];
 
   return (
